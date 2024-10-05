@@ -18,14 +18,12 @@ add address=103.247.20.38/30 comment="ptp MX204 CORE - ae1.29" interface=vL29 ne
 add address=103.247.20.42/30 comment="ptp MX204 CORE - ae1.30" interface=vL30 network=103.247.20.40
 
 /ip route
-add disabled=yes distance=1 dst-address=0.0.0.0/0 gateway=103.247.20.37 routing-table=main scope=30 suppress-hw-offload=no target-scope=10
 add blackhole disabled=no dst-address=103.173.140.16/29 gateway="" routing-table=main suppress-hw-offload=no
 add blackhole disabled=no dst-address=103.173.140.32/29 gateway="" routing-table=main suppress-hw-offload=no
 
 /routing filter rule
 add chain=adv-ospf-out disabled=no rule="if ( dst == 103.173.140.16/29 && dst-len in 29-32 ) { accept;}"
 add chain=adv-ospf-out disabled=no rule="if ( dst == 103.173.140.32/29 && dst-len in 29-32 ) { accept;}"
-add chain=adv-ospf-out disabled=yes rule="if ( protocol connected ) { accept;}"
 
 /routing ospf interface-template
 add area=area0 disabled=no interfaces=vL29
